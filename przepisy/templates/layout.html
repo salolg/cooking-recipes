@@ -1,0 +1,24 @@
+<!doctype html>
+<title>Przepisy kulinarne</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<div class="page">
+  <h1>Przepisy kulinarne</h1>
+  <div class="metanav">
+  {% if session.username %}
+  Zalogowany jako {{ session.username }}
+  {% endif %}
+  <a href="{{ url_for('index') }}" class="buttons">Strona główna</a>
+  <a href="{{ url_for('search_box') }}" class="buttons">Wyszukaj przepis</a>
+  {% if not session.username %}
+    <a href="{{ url_for('register') }}" class="buttons">Zarejestruj sie</a>
+    <a href="{{ url_for('login') }}" class="buttons">Zaloguj sie</a>
+  {% else %}
+    <a href="{{ url_for('profile', username=session.username) }}" class="buttons">Twój profil</a>
+    <a href="{{ url_for('logout') }}" class="buttons">Wyloguj sie</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

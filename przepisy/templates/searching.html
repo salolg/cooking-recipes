@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>Wyszukaj przepis po składniku:</h2>
+    <form action="{{ url_for('searching') }}" method="post">
+        <dl>
+            <dt>Wpisz nazwę składnika (np. czekolada):</dt>
+            <dd><input type="text" size="80" name="tag"></dd>
+        </dl>
+        <input type="submit" value="Wyszukaj">
+    </form>
+
+{% include "display_searching_result.html" %}
+{% endblock %}

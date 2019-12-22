@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>Strona główna</h2>
+  {% if session.username %}
+    <h3>Dodaj nowy przepis:</h3>
+    <form action="{{ url_for('add_post') }}" method="post">
+        <dl>
+            <dt>Nazwa:</dt>
+            <dd><input type="text" size="50" name="title"></dd>
+            <dt>Nazwy składników (oddzielone przecinkami): </dt>
+            <dd><input type="text" size="50" name="tags"></dd>
+            <dt>Ilość składników oraz sposób przygotowania:</dt>
+            <dd><textarea name="text" rows="5" cols="50"></textarea></dd>
+        </dl>
+        <input type="submit" value="Udostepnij przepis">
+    </form>
+  {% endif %}
+
+<br>
+
+<h3>Najnowsze przepisy:</h3>
+{% include "display_posts.html" %}
+
+{% endblock %}

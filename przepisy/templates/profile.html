@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>Profil użytkownika {{ username }}</h2>
+
+{% if session.username %}
+    {% if session.username == username %}
+        <h3>Twoje pzepisy:</h3>
+    {% endif %}
+{% endif %}
+
+{% include "display_posts.html" %}
+
+{% endblock %}
